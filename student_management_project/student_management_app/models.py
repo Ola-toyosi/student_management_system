@@ -156,6 +156,7 @@ class NotificationStaff(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = models.Manager()
 
+
 class StudentResult(models.Model):
     id = models.AutoField(rimary_key=True)
     student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
@@ -164,3 +165,32 @@ class StudentResult(models.Model):
     subject_assignment_marks = models.Floatfield(default=0)
 
 
+# Creating Django Signals
+@receiver(post_save, sender=CustomUser)
+# now creating a function which will automatically insert data into HOD, Staff or Student
+def create_user_profile(sender, instance, created, **kwargs):
+    #         if created is true(Means Data Inserted)
+    if created:
+        #         check the user type and insert the data into the respsective tables
+        if instance.user_type == 1:
+            AdminHOD.objects.create(admin=instance)
+        if instance.user_type == 2:
+            Staff.objects.create(admin=instance)
+        if instance.user_type == 3:
+            Students.objects.create(admin=instance,
+                                    course_id=Courses.objects.get(id=1),
+                                    session_year_id=SessionYearModel.objects.get(id=1),
+                                    address="",
+                                    profile_pic="",
+                                    gender=""
+                                    )
+
+
+@receiver(post_save, sender=CustomUser)
+def save_user_profile(sender, instance, **kwargs):
+    if instance.user_type == 1:
+        instance.adminhod.save()
+    if instance.user_type == 2:
+        instance.staff.save()
+    if instance.user_type == 3:
+        instance.students.save()
