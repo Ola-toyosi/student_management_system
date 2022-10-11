@@ -125,7 +125,7 @@ def doRegistration(request):
 
 
 # logout request
-def logout(request):
+def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/')
 

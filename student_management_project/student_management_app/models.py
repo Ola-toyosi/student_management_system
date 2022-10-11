@@ -171,7 +171,7 @@ class StudentResult(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     #         if created is true(Means Data Inserted)
     if created:
-        #         check the user type and insert the data into the respsective tables
+        #         check the user type and insert the data into the respective tables
         if instance.user_type == 1:
             AdminHOD.objects.create(admin=instance)
         if instance.user_type == 2:
