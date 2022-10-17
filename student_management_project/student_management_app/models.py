@@ -55,7 +55,7 @@ class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
 
-    course_id = models.ForeignKey(on_delete=models.CASCADE, defaualt=1)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE, default=1)
     student_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -158,11 +158,14 @@ class NotificationStaff(models.Model):
 
 
 class StudentResult(models.Model):
-    id = models.AutoField(rimary_key=True)
+    id = models.AutoField(primary_key=True)
     student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
     subject_id = models.ForeignKey(Subjects, on_delete=models.CASCADE, default=1)
     subject_exam_marks = models.FloatField(default=0)
-    subject_assignment_marks = models.Floatfield(default=0)
+    subject_assignment_marks = models.FloatField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = models.Manager()
 
 
 # Creating Django Signals

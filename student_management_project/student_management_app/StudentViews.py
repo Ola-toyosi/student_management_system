@@ -193,7 +193,7 @@ def student_profile_update(request):
             customuser = CustomUser.objects.get(id=request.user.id)
             customuser.first_name = first_name
             customuser.last_name = last_name
-            if password is not None and password != "":
+            if password != None and password != "":
                 customuser.set_password(password)
             customuser.save()
 

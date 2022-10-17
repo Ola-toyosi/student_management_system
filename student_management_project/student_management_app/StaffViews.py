@@ -104,7 +104,7 @@ def staff_apply_leave(request):
 
 
 def staff_apply_leave_save(request):
-    if request.method is not "POST":
+    if request.method != "POST":
         messages.error(request, "Invalid Method.")
         return redirect('staff_apply_leave')
     else:
@@ -131,7 +131,7 @@ def staff_feedback(request):
 
 
 def staff_feedback_save(request):
-    if request.method is not "POST":
+    if request.method != "POST":
         messages.error(request, "Invalid Method.")
         return redirect('staff_feedback')
     else:
@@ -305,7 +305,7 @@ def staff_profile(request):
 
 
 def staff_profile_update(request):
-    if request.method is not "POST":
+    if request.method != "POST":
         messages.error(request, "Invalid method.")
         return redirect('staff_profile')
     else:
@@ -318,7 +318,7 @@ def staff_profile_update(request):
             customuser = CustomUser.objects.get(id=request.user.id)
             customuser.first_name = first_name
             customuser.last_name = last_name
-            if password is not None and password is not "":
+            if password != None and password != "":
                 customuser.set_password(password)
             customuser.save()
 
@@ -347,7 +347,7 @@ def staff_add_result(request):
 
 
 def staff_add_result_save(request):
-    if request is not "POST":
+    if request != "POST":
         messages.error(request, "Invalid method!")
         return redirect('staff_add_result')
     else:
