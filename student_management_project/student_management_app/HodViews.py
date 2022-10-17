@@ -259,7 +259,7 @@ def delete_course(request, course_id):
 
 
 def add_session(request):
-    return render(request, "hod_templates/add_session_template.html")
+    return render(request, "hod_template/add_session_template.html")
 
 
 def add_session_save(request):
@@ -286,7 +286,7 @@ def manage_session(request):
     context = {
         "session_years": session_years
     }
-    return render(request, "hod_templates/manage_session_template.html", context)
+    return render(request, "hod_template/manage_session_template.html", context)
 
 
 def edit_session(request, session_id):
@@ -294,7 +294,7 @@ def edit_session(request, session_id):
     context = {
         "session_year": session_year
     }
-    return render(request, "hod_templates/edit_session_year.html", context)
+    return render(request, "hod_template/edit_session_year.html", context)
 
 
 def edit_session_save(request):
@@ -335,7 +335,7 @@ def add_student(request):
     context = {
         "form": form
     }
-    return render(request, 'hod_template/add_student_template', context)
+    return render(request, 'hod_template/add_student_template.html', context)
 
 
 def add_student_save(request):
@@ -543,7 +543,7 @@ def manage_subject(request):
         "subjects": subjects
     }
 
-    return redirect(request, 'hod_template/manage_subject_template.html', context)
+    return render(request, 'hod_template/manage_subject_template.html', context)
 
 
 def edit_subject(request, subject_id):
@@ -601,7 +601,7 @@ def delete_subject(request, subject_id):
 
 
 @csrf_exempt
-def check_email_exist(request):
+def check_email_exists(request):
     email = request.POST.get("email")
     user_obj = CustomUser.objects.filter(email=email).exists()
     if user_obj:

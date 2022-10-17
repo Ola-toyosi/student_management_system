@@ -74,7 +74,7 @@ urlpatterns = [
     path('edit_subject/<subject_id>/', HodViews.edit_subject, name="edit_subject"),
     path('edit_subject_save/', HodViews.edit_subject_save, name="edit_subject_save"),
     path('delete_subject/<subject_id>/', HodViews.delete_subject, name="delete_subject"),
-    path('check_email_exist/', HodViews.check_email_exist, name="check_email_exist"),
+    path('check_email_exists/', HodViews.check_email_exists, name="check_email_exists"),
     path('check_username_exists/', HodViews.check_username_exists, name="check_username_exists"),
     path('student_feedback_message/', HodViews.student_feedback_message, name="student_feedback_message"),
     path('student_feedback_message_reply/', HodViews.student_feedback_message_reply,
